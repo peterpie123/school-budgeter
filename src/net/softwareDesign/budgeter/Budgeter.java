@@ -1,13 +1,21 @@
 package net.softwareDesign.budgeter;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 //import java.awt.*;
 
@@ -23,30 +31,12 @@ public class Budgeter extends Application  {
         launch(args);
     }
 
-    public void start(Stage stage) {
-        pane = new GridPane();
+    public void start(Stage stage) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Budgeter.fxml"));
 
-        //income
-        Text txtIncome = new Text("Enter your monthly income: ");
-        TextField tfIncome = new TextField();
-
-        //monthly expenses
-        Text txtUtilites = new Text("Enter your utiliy bill:");
-        TextField tfUtilities = new TextField();
-        Text txtFood = new Text("Enter your food expenses:");
-        TextField tfFood = new TextField();
-
-        GridPane inputPane = new GridPane();
-        inputPane.add(txtIncome, 0,0);
-        inputPane.add(tfIncome, 1,0);
-        inputPane.add(txtUtilites, 0,1);
-        inputPane.add(tfUtilities, 1,1);
-        inputPane.add(txtFood, 0,2);
-        inputPane.add(tfFood, 1,2);
-
-        pane.add(inputPane, 0, 0);
-        Scene scene = new Scene(pane);
+        Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.setTitle("Budgeter.java");
         stage.show();
     }
 }
