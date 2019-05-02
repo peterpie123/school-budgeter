@@ -25,10 +25,8 @@ import java.io.IOException;
  * Here's how you learn how to manage money!
  */
 public class Budgeter extends Application  {
-    /**
-     * Overall pane used for the application
-     */
-    private static GridPane pane;
+    
+
     public static void main(String[] args) {
         launch(args);
     }
