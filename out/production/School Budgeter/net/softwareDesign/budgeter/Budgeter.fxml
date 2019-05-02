@@ -66,6 +66,6 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </GridPane>
-      <Button id="submit" layoutX="406.0" layoutY="170.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="110.0" style="-fx-background-color: #a7d129; -fx-background-radius: 20;" text="Submit" textFill="#141414" />
+      <Button id="submit" layoutX="406.0" layoutY="170.0" mnemonicParsing="false" onAction="#calculate" prefHeight="61.0" prefWidth="110.0" style="-fx-background-color: #a7d129; -fx-background-radius: 20;" text="Submit" textFill="#141414" />
    </children>
 </AnchorPane>

@@ -1,6 +1,8 @@
 package net.softwareDesign.budgeter;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -38,5 +40,9 @@ public class Budgeter extends Application  {
         stage.setScene(scene);
         stage.setTitle("Budgeter.java");
         stage.show();
+    }
+    @FXML
+    private void calculate(ActionEvent event){
+        System.out.println("button works");
     }
 }
