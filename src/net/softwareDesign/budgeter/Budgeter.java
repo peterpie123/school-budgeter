@@ -23,15 +23,17 @@ import java.io.IOException;
 
 /**
  * Here's how you learn how to manage money!
+ * @version alpha 1.0
  */
 public class Budgeter extends Application  {
-    
+
 
     public static void main(String[] args) {
         launch(args);
     }
 
     public void start(Stage stage) throws IOException {
+        //scene done through Scene builder, see .fxml file
         Parent root = FXMLLoader.load(getClass().getResource("Budgeter.fxml"));
 
         Scene scene = new Scene(root);
@@ -39,6 +41,16 @@ public class Budgeter extends Application  {
         stage.setTitle("Budgeter.java");
         stage.show();
     }
+
+    /**
+     * Method to handle button presses.
+     * <br>
+     * The method handles the calculate action event for the submit button.
+     * At this point, the button only prints a message to the console.
+     * Will add functionality later.
+     *
+     * @param event
+     */
     @FXML
     private void calculate(ActionEvent event){
         System.out.println("button works");

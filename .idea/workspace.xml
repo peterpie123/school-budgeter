@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/net/softwareDesign/budgeter/Budgeter.java" line="37" />
-    <bookmark url="file://$PROJECT_DIR$/src/net/softwareDesign/budgeter/Budgeter.java" line="38" />
+    <bookmark url="file://$PROJECT_DIR$/src/net/softwareDesign/budgeter/Budgeter.java" line="39" />
+    <bookmark url="file://$PROJECT_DIR$/src/net/softwareDesign/budgeter/Budgeter.java" line="40" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a7cf296-7648-4b79-b626-940690ba0caf" name="Default Changelist" comment="">
@@ -23,8 +23,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/net/softwareDesign/budgeter/Budgeter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="27" column="4" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
+            <state relative-caret-position="-19">
+              <caret line="38" column="38" lean-forward="true" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#788#789#0" expanded="true" />
@@ -210,8 +210,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/net/softwareDesign/budgeter/Budgeter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="27" column="4" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
+        <state relative-caret-position="-19">
+          <caret line="38" column="38" lean-forward="true" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#788#789#0" expanded="true" />
