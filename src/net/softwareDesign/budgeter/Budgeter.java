@@ -8,8 +8,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -26,15 +25,20 @@ import java.io.IOException;
  * @version alpha 1.0
  */
 public class Budgeter extends Application  {
-
+    @FXML private TableView debtTable;
+    @FXML private TableColumn aprCol;
+    @FXML private TextField apr;
+    @FXML private TextField value;
+    @FXML private TextField payment;
 
     public static void main(String[] args) {
         launch(args);
     }
-
+    Parent root;
     public void start(Stage stage) throws IOException {
         //scene done through Scene builder, see .fxml file
-        Parent root = FXMLLoader.load(getClass().getResource("Budgeter.fxml"));
+        root = FXMLLoader.load(getClass().getResource("Budgeter.fxml"));
+
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -54,5 +58,10 @@ public class Budgeter extends Application  {
     @FXML
     private void calculate(ActionEvent event){
         System.out.println("button works");
+    }
+
+    @FXML
+    private void addDebt(ActionEvent event){
+        
     }
 }
