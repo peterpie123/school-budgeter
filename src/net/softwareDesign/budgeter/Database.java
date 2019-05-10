@@ -40,6 +40,19 @@ public class Database {
         debt = new ArrayList<>();
     }
 
+    public double getDisposableIncome(){
+
+        double disposableIncome = monthlyIncome - monthlyUtilities - foodExpenses;
+        for(Debt d:debt){
+
+            disposableIncome -= d.getCurrentPayment();
+
+        }
+        return disposableIncome;
+
+
+    }
+
     public void addDebt(Debt toAdd) {
         debt.add(toAdd);
     }
@@ -73,5 +86,14 @@ public class Database {
 
     public int getEmergencySavings() {
         return emergencySavings;
+    }
+
+    public double calculateExpectedRetirmentSavings(){
+
+        Date currentDate = new Date();
+        int monthsRemaining = (retireDate.getYear() - currentDate.getYear()) * 12 + retireDate.getMonth() - currentDate.getMonth();
+        double expectedRetirement = Math.pow(1.06, monthsRemaining) * retirementSavings;
+        return expectedRetirement;
+
     }
 }
