@@ -64,6 +64,5 @@ public class Budgeter extends Application  {
                 Integer.parseInt(utilities.getText()), Integer.parseInt(food.getText()),
                 Date.from(Instant.from(retire.getValue().atStartOfDay(ZoneId.systemDefault()))),
                 Integer.parseInt(savings.getText()));
-
     }
 }

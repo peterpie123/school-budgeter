@@ -1,5 +1,6 @@
 package net.softwareDesign.budgeter;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Database {
@@ -27,6 +28,8 @@ public class Database {
      */
     private int emergencySavings;
 
+    private ArrayList<Debt> debt;
+
     public Database(int monthlyIncome, int monthlyUtilities,
                     int foodExpenses, Date retireDate, int retirementSavings) {
         this.monthlyIncome = monthlyIncome;
@@ -34,5 +37,41 @@ public class Database {
         this.foodExpenses = foodExpenses;
         this.retireDate = retireDate;
         this.retirementSavings = retirementSavings;
+        debt = new ArrayList<>();
+    }
+
+    public void addDebt(Debt toAdd) {
+        debt.add(toAdd);
+    }
+    public ArrayList<Debt> getDebt() {
+        return debt;
+    }
+
+    public int getMonthlyIncome() {
+        return monthlyIncome;
+    }
+
+    public int getMonthlyUtilities() {
+        return monthlyUtilities;
+    }
+
+    public int getFoodExpenses() {
+        return foodExpenses;
+    }
+
+    public Date getRetireDate() {
+        return retireDate;
+    }
+
+    public double getAge() {
+        return age;
+    }
+
+    public int getRetirementSavings() {
+        return retirementSavings;
+    }
+
+    public int getEmergencySavings() {
+        return emergencySavings;
     }
 }
