@@ -1,6 +1,8 @@
 package net.softwareDesign.budgeter;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -37,6 +40,7 @@ public class Budgeter extends Application  {
     @FXML private TextField food;
     @FXML private DatePicker retire;
     @FXML private TextField savings;
+    @FXML private TextField emergency;
     @FXML private Button submit;
 
 
@@ -47,11 +51,15 @@ public class Budgeter extends Application  {
 
     private Database database;
 
-    @FXML private TableView debtTable;
-    @FXML private TableColumn aprCol;
+    @FXML private TableView <Debt> debtTable;
+    @FXML private TableColumn<Debt, Integer> aprCol;
+    @FXML private TableColumn<Debt, Integer> valueCol;
+    @FXML private TableColumn<Debt, Integer> paymentCol;
     @FXML private TextField apr;
     @FXML private TextField value;
     @FXML private TextField payment;
+
+    ObservableList<Debt> debtList = FXCollections.observableArrayList();
 
     public static void main(String[] args) {
         launch(args);
@@ -83,11 +91,20 @@ public class Budgeter extends Application  {
         database = new Database(Integer.parseInt(income.getText()),
                 Integer.parseInt(utilities.getText()), Integer.parseInt(food.getText()),
                 Date.from(Instant.from(retire.getValue().atStartOfDay(ZoneId.systemDefault()))),
-                Integer.parseInt(savings.getText()));
+                Integer.parseInt(savings.getText()), Integer.parseInt(emergency.getText()));
+
     }
 
     @FXML
     private void addDebt(ActionEvent event){
+        aprCol.setCellValueFactory(new PropertyValueFactory<>("apr"));
+        valueCol.setCellValueFactory(new PropertyValueFactory<>("currentValue"));
+        paymentCol.setCellValueFactory(new PropertyValueFactory<>("currentPayment"));
 
+        debtList.add(new Debt(Double.valueOf(value.getText()),Double.valueOf(apr.getText()),Double.valueOf(payment.getText())));
+        database.addDebt(new Debt(Double.valueOf(value.getText()),Double.valueOf(apr.getText()),Double.valueOf(payment.getText())));
+        debtTable.setItems(debtList);
     }
+
+
 }
