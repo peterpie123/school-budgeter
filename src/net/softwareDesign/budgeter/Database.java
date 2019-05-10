@@ -88,10 +88,19 @@ public class Database {
         return emergencySavings;
     }
 
-    public double calculateExpectedRetirmentSavings() {
+    public double calculateExpectedRetirementSavings() {
         Date currentDate = new Date();
         int monthsRemaining = (retireDate.getYear() - currentDate.getYear()) * 12 + retireDate.getMonth() - currentDate.getMonth();
         double expectedRetirement = Math.pow(1.005, monthsRemaining) * retirementSavings;
         return expectedRetirement;
+    }
+
+    public double calculatePossibleRetirement(double monthlyAmount){
+
+        Date currentDate = new Date();
+        int monthsRemaining = (retireDate.getYear() - currentDate.getYear()) * 12 + retireDate.getMonth() - currentDate.getMonth();
+        double possibleAmount = calculateExpectedRetirementSavings() + Math.pow(1.005, monthsRemaining + 1) / 0.005 * monthlyAmount;
+        return possibleAmount;
+
     }
 }
