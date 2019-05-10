@@ -9,6 +9,10 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -17,6 +21,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.util.Date;
 
 //import java.awt.*;
 
@@ -25,6 +32,21 @@ import java.io.IOException;
  * @version alpha 1.0
  */
 public class Budgeter extends Application  {
+    @FXML private TextField income;
+    @FXML private TextField utilities;
+    @FXML private TextField food;
+    @FXML private DatePicker retire;
+    @FXML private TextField savings;
+    @FXML private Button submit;
+
+
+    /**
+     * Overall pane used for the application
+     */
+    private static GridPane pane;
+
+    private Database database;
+
     @FXML private TableView debtTable;
     @FXML private TableColumn aprCol;
     @FXML private TextField apr;
@@ -58,10 +80,14 @@ public class Budgeter extends Application  {
     @FXML
     private void calculate(ActionEvent event){
         System.out.println("button works");
+        database = new Database(Integer.parseInt(income.getText()),
+                Integer.parseInt(utilities.getText()), Integer.parseInt(food.getText()),
+                Date.from(Instant.from(retire.getValue().atStartOfDay(ZoneId.systemDefault()))),
+                Integer.parseInt(savings.getText()));
     }
 
     @FXML
     private void addDebt(ActionEvent event){
-        
+
     }
 }
