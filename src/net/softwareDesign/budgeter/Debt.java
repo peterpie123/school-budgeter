@@ -7,7 +7,7 @@ import java.net.URI;
  */
 public class Debt {
     /**
-     * Interest per year
+     * Interest per year as a percent
      */
     private double apr;
     /**
@@ -29,20 +29,11 @@ public class Debt {
      * Number of months remaining on the debt
      */
     public int monthsRemaining() {
-        int months = 0;
-        double balance = currentValue;
-        while(balance > 0) {
-            months++;
-            //apply interest
-            balance *= 1+ (apr/12);
-            balance -= currentPayment;
 
-            //give up!
-            if(months > 600) {
-                return 600;
-            }
-        }
+        double monthlyRate = apr / 100.0 / 12;
+        int months = (int) (-Math.log(1-currentValue * monthlyRate / currentPayment) / Math.log(1 + monthlyRate));
         return months;
+
     }
 
     public void setCurrentPayment(double currentPayment) {
@@ -59,5 +50,12 @@ public class Debt {
 
     public double getCurrentPayment() {
         return currentPayment;
+    }
+
+    public static void main(String[] args){
+
+        Debt d = new Debt(240000, 4,1166);
+        System.out.println(d.monthsRemaining());
+
     }
 }
