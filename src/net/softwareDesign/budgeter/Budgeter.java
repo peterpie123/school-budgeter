@@ -49,7 +49,7 @@ public class Budgeter extends Application{
      */
     private static GridPane pane;
 
-    private Database database;
+    Database database;
 
     @FXML private TableView <Debt> debtTable;
     @FXML private TableColumn<Debt, Integer> aprCol;
