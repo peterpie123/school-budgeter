@@ -31,12 +31,13 @@ public class Database {
     private ArrayList<Debt> debt;
 
     public Database(int monthlyIncome, int monthlyUtilities,
-                    int foodExpenses, Date retireDate, int retirementSavings) {
+                    int foodExpenses, Date retireDate, int retirementSavings, int emergencySavings) {
         this.monthlyIncome = monthlyIncome;
         this.monthlyUtilities = monthlyUtilities;
         this.foodExpenses = foodExpenses;
         this.retireDate = retireDate;
         this.retirementSavings = retirementSavings;
+        this.emergencySavings = emergencySavings;
         debt = new ArrayList<>();
     }
 

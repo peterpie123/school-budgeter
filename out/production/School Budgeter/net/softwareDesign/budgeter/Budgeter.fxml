@@ -10,7 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1b1919;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.softwareDesign.budgeter.Budgeter">
+<AnchorPane prefHeight="400.0" prefWidth="800.0" style="-fx-background-color: #1b1919;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.softwareDesign.budgeter.Budgeter">
    <children>
       <GridPane hgap="5.0" layoutX="27.0" layoutY="28.0" style="-fx-background-color: #616f39; -fx-background-radius: 5;" vgap="10.0">
         <columnConstraints>
@@ -24,11 +24,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Enter your monthly income:">
-               <font>
-                  <Font name="Calibri" size="15.0" />
-               </font>
-            </Label>
+            <Label styleClass="labelText" stylesheets="@stylesheet.css" text="Enter your monthly income:" />
             <Label text="Enter your food expenses:" GridPane.rowIndex="2" />
             <TextField fx:id="income" GridPane.columnIndex="1" />
             <TextField fx:id="utilities" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -59,13 +55,26 @@
                </GridPane.margin>
             </Label>
             <DatePicker fx:id="retire" GridPane.columnIndex="1" />
-            <Label text="How much do you have in savings?" wrapText="true" GridPane.rowIndex="1" />
+            <Label text="How much do you have in retirement savings?" wrapText="true" GridPane.rowIndex="1" />
             <TextField fx:id="savings" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="How much do you have in emergency savings?" wrapText="true" GridPane.rowIndex="2" />
+            <TextField fx:id="emergency" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </GridPane>
-      <Button id="submit" layoutX="406.0" layoutY="170.0" mnemonicParsing="false" onAction="#calculate" prefHeight="61.0" prefWidth="110.0" style="-fx-background-color: #a7d129; -fx-background-radius: 20;" text="Submit" textFill="#141414" />
+      <Button id="submit" fx:id="submit" layoutX="417.0" layoutY="318.0" mnemonicParsing="false" onAction="#calculate" prefHeight="61.0" prefWidth="110.0" style="-fx-background-color: #a7d129; -fx-background-radius: 20;" text="Submit" textFill="#141414" />
+      <TableView fx:id="debtTable" editable="true" layoutX="361.0" layoutY="58.0" prefHeight="200.0" prefWidth="379.0">
+        <columns>
+          <TableColumn fx:id="valueCol" prefWidth="130.0" text="Current Value" />
+            <TableColumn fx:id="aprCol" prefWidth="82.0" text="APR" />
+          <TableColumn fx:id="paymentCol" prefWidth="179.0" text="Current Payment" />
+        </columns>
+      </TableView>
+      <TextField fx:id="value" layoutX="361.0" layoutY="264.0" prefHeight="31.0" prefWidth="123.0" />
+      <TextField fx:id="apr" layoutX="492.0" layoutY="264.0" prefHeight="31.0" prefWidth="77.0" />
+      <TextField fx:id="payment" layoutX="579.0" layoutY="264.0" prefHeight="31.0" prefWidth="161.0" />
+      <Button fx:id="addDebtBtn" layoutX="746.0" layoutY="264.0" mnemonicParsing="false" onAction="#addDebt" text="Add" />
    </children>
 </AnchorPane>
