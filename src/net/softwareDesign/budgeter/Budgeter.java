@@ -85,8 +85,8 @@ public class Budgeter extends Application{
      *
      * @param event
      */
-    @FXML private Label months;
 
+    Parent root2;
     @FXML
     private void calculate(ActionEvent event) throws IOException {
         /*
@@ -103,24 +103,19 @@ public class Budgeter extends Application{
                 Date.from(Instant.from(retire.getValue().atStartOfDay(ZoneId.systemDefault()))),
                 Integer.parseInt(savings.getText()), Integer.parseInt(emergency.getText()));
 
-        int maxMonths = -1;
+
         for(Debt d:debtList){
-            if(maxMonths < d.monthsRemaining()){
-                maxMonths = d.monthsRemaining();
-            }
             database.addDebt(d);
         }
 
-        Parent root2 = FXMLLoader.load(getClass().getResource("budgetDisplay.fxml"));
+        root2 = FXMLLoader.load(getClass().getResource("budgetDisplay.fxml"));
         Stage stage2 = new Stage();
         Scene scene2 = new Scene(root2);
-
-
-
         stage2.setScene(scene2);
         stage2.show();
 
     }
+
 
     @FXML
     private void addDebt(ActionEvent event){
