@@ -34,7 +34,7 @@ import java.util.Date;
  * Here's how you learn how to manage money!
  * @version alpha 1.0
  */
-public class Budgeter extends Application  {
+public class Budgeter extends Application{
     @FXML private TextField income;
     @FXML private TextField utilities;
     @FXML private TextField food;
@@ -85,23 +85,41 @@ public class Budgeter extends Application  {
      *
      * @param event
      */
+    @FXML private Label months;
+
     @FXML
     private void calculate(ActionEvent event) throws IOException {
+        /*
         System.out.println(income.getText());
         System.out.println(Integer.parseInt(utilities.getText()));
         System.out.println(Integer.parseInt(food.getText()));
         System.out.println(Date.from(Instant.from(retire.getValue().atStartOfDay(ZoneId.systemDefault()))));
         System.out.println(Integer.parseInt(savings.getText()));
         System.out.println(Integer.parseInt(emergency.getText()));
+         */
 
         database = new Database(Integer.parseInt(income.getText()),
                 Integer.parseInt(utilities.getText()), Integer.parseInt(food.getText()),
                 Date.from(Instant.from(retire.getValue().atStartOfDay(ZoneId.systemDefault()))),
                 Integer.parseInt(savings.getText()), Integer.parseInt(emergency.getText()));
+
+        int maxMonths = -1;
         for(Debt d:debtList){
+            if(maxMonths < d.monthsRemaining()){
+                maxMonths = d.monthsRemaining();
+            }
             database.addDebt(d);
         }
-        root = FXMLLoader.load(getClass().getResource("budgetDisplay.fxml"));
+
+        Parent root2 = FXMLLoader.load(getClass().getResource("budgetDisplay.fxml"));
+        Stage stage2 = new Stage();
+        Scene scene2 = new Scene(root2);
+
+
+
+        stage2.setScene(scene2);
+        stage2.show();
+
     }
 
     @FXML
