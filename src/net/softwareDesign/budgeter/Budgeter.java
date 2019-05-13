@@ -86,13 +86,22 @@ public class Budgeter extends Application  {
      * @param event
      */
     @FXML
-    private void calculate(ActionEvent event){
-        System.out.println("button works");
+    private void calculate(ActionEvent event) throws IOException {
+        System.out.println(income.getText());
+        System.out.println(Integer.parseInt(utilities.getText()));
+        System.out.println(Integer.parseInt(food.getText()));
+        System.out.println(Date.from(Instant.from(retire.getValue().atStartOfDay(ZoneId.systemDefault()))));
+        System.out.println(Integer.parseInt(savings.getText()));
+        System.out.println(Integer.parseInt(emergency.getText()));
+
         database = new Database(Integer.parseInt(income.getText()),
                 Integer.parseInt(utilities.getText()), Integer.parseInt(food.getText()),
                 Date.from(Instant.from(retire.getValue().atStartOfDay(ZoneId.systemDefault()))),
                 Integer.parseInt(savings.getText()), Integer.parseInt(emergency.getText()));
-
+        for(Debt d:debtList){
+            database.addDebt(d);
+        }
+        root = FXMLLoader.load(getClass().getResource("budgetDisplay.fxml"));
     }
 
     @FXML
@@ -102,7 +111,6 @@ public class Budgeter extends Application  {
         paymentCol.setCellValueFactory(new PropertyValueFactory<>("currentPayment"));
 
         debtList.add(new Debt(Double.valueOf(value.getText()),Double.valueOf(apr.getText()),Double.valueOf(payment.getText())));
-        database.addDebt(new Debt(Double.valueOf(value.getText()),Double.valueOf(apr.getText()),Double.valueOf(payment.getText())));
         debtTable.setItems(debtList);
     }
 
