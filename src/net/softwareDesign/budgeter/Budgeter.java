@@ -12,6 +12,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -119,14 +120,20 @@ public class Budgeter extends Application{
         stackPane.getChildren().get(0).toFront();
     }
 
-
+    @FXML private PieChart pieChart;
 
     @FXML
     private void getRetire(ActionEvent event){
         budget = new Budget(database);
         double savings = Math.round(budget.setRetirementPercentage(retireSlider.getValue()/100));
         outputLabel.setText("You will have "+ savings +" in the bank when you retire.");
-        System.out.println("You will have "+ budget.setRetirementPercentage(retireSlider.getValue()/100)+" in the bank when you retire.");
+        ObservableList<PieChart.Data> pieData = FXCollections.observableArrayList();
+        pieData.add(new PieChart.Data("Food", database.getFoodExpenses()));
+        pieData.add(new PieChart.Data("Utilities", database.getMonthlyUtilities()));
+        pieData.add(new PieChart.Data("Disposable Income", budget.getSurplusIncome()));
+        pieData.add(new PieChart.Data("Retirement Savings", budget.getRetirementPerMonth()));
+        pieData.add(new PieChart.Data("Emergency Savings", budget.getEmergencyPerMonth()));
+        pieChart.setData(pieData);
     }
 
 
