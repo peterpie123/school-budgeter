@@ -1,6 +1,8 @@
 package net.softwareDesign.budgeter;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,6 +18,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -49,8 +52,8 @@ public class Budgeter extends Application{
      */
     private static GridPane pane;
 
-    Database database;
-
+    private Database database;
+    private Budget budget;
     @FXML private TableView <Debt> debtTable;
     @FXML private TableColumn<Debt, Integer> aprCol;
     @FXML private TableColumn<Debt, Integer> valueCol;
@@ -58,6 +61,8 @@ public class Budgeter extends Application{
     @FXML private TextField apr;
     @FXML private TextField value;
     @FXML private TextField payment;
+    @FXML private Slider retireSlider;
+    @FXML private Label outputLabel;
 
     ObservableList<Debt> debtList = FXCollections.observableArrayList();
 
@@ -86,7 +91,9 @@ public class Budgeter extends Application{
      * @param event
      */
 
-    Parent root2;
+    @FXML private StackPane stackPane;
+
+
     @FXML
     private void calculate(ActionEvent event) throws IOException {
         /*
@@ -108,13 +115,21 @@ public class Budgeter extends Application{
             database.addDebt(d);
         }
 
-        root2 = FXMLLoader.load(getClass().getResource("budgetDisplay.fxml"));
-        Stage stage2 = new Stage();
-        Scene scene2 = new Scene(root2);
-        stage2.setScene(scene2);
-        stage2.show();
 
+        stackPane.getChildren().get(0).toFront();
     }
+
+
+
+    @FXML
+    private void getRetire(ActionEvent event){
+        budget = new Budget(database);
+        double savings = Math.round(budget.setRetirementPercentage(retireSlider.getValue()/100));
+        outputLabel.setText("You will have "+ savings +" in the bank when you retire.");
+        System.out.println("You will have "+ budget.setRetirementPercentage(retireSlider.getValue()/100)+" in the bank when you retire.");
+    }
+
+
 
 
     @FXML
